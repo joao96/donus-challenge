@@ -50,7 +50,7 @@ class AccountsRepository implements IAccountsRepository {
         },
       });
     } catch (err) {
-      throw new AppError('Account not found.', 404);
+      throw new AppError('Account not found.');
     }
   }
 }

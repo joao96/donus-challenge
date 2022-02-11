@@ -16,6 +16,9 @@ class UsersRepository implements IUsersRepository {
       where: {
         cpf,
       },
+      include: {
+        Account: true,
+      },
     });
 
     return result;
@@ -40,7 +43,7 @@ class UsersRepository implements IUsersRepository {
         },
       });
     } catch (err) {
-      throw new AppError('User not found.', 404);
+      throw new AppError('User not found.');
     }
   }
 }
