@@ -11,23 +11,22 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  cpf       Int      @unique
-  fullName  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  Account   Account? // customer can have 0 to one Account
+  cpf        String   @id
+  full_name  String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  Account    Account? // customer can have 0 to one Account
 }
 
 model Account {
-  id        String   @id @default(uuid())
-  balance   Float
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id         String   @id @default(uuid())
+  balance    Float
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 
   // Relation Fields
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+  user_id String @unique
+  user    User   @relation(fields: [user_id], references: [cpf])
 
   recipient Transaction[] @relation("recipient")
   sender    Transaction[] @relation("sender")
@@ -38,13 +37,13 @@ model Transaction {
   description String?
   amount      Float
   type        TransactionType
-  createdAt   DateTime        @default(now())
+  created_at  DateTime        @default(now())
 
   // Relation Fields
-  recipientId String
-  recipient   Account  @relation(name: "recipient", fields: [recipientId], references: [id])
-  senderId    String?
-  sender      Account? @relation(name: "sender", fields: [senderId], references: [id])
+  recipient_id String
+  recipient    Account  @relation(name: "recipient", fields: [recipient_id], references: [id])
+  sender_id    String?
+  sender       Account? @relation(name: "sender", fields: [sender_id], references: [id])
 }
 
 enum TransactionType {
