@@ -19,6 +19,14 @@ class CreateUserUseCase {
       throw new AppError('User already exists.');
     }
 
+    if (!full_name) {
+      throw new AppError("Provide the user's full name.");
+    }
+
+    if (!cpf) {
+      throw new AppError('Provide a valid CPF.');
+    }
+
     const user = await this.usersRepository.create({ cpf, full_name });
 
     return user;

@@ -25,8 +25,8 @@ model Account {
   updated_at DateTime @default(now())
 
   // Relation Fields
-  user_id String @unique
-  user    User   @relation(fields: [user_id], references: [cpf])
+  user_cpf String @unique
+  user     User   @relation(fields: [user_cpf], references: [cpf])
 
   recipient Transaction[] @relation("recipient")
   sender    Transaction[] @relation("sender")

@@ -17,7 +17,7 @@ CREATE TABLE "Account" (
     "balance" DOUBLE PRECISION NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "user_id" TEXT NOT NULL,
+    "user_cpf" TEXT NOT NULL,
 
     CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
 );
@@ -36,10 +36,10 @@ CREATE TABLE "Transaction" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Account_user_id_key" ON "Account"("user_id");
+CREATE UNIQUE INDEX "Account_user_cpf_key" ON "Account"("user_cpf");
 
 -- AddForeignKey
-ALTER TABLE "Account" ADD CONSTRAINT "Account_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("cpf") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Account" ADD CONSTRAINT "Account_user_cpf_fkey" FOREIGN KEY ("user_cpf") REFERENCES "User"("cpf") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Transaction" ADD CONSTRAINT "Transaction_recipient_id_fkey" FOREIGN KEY ("recipient_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
