@@ -26,7 +26,7 @@ model Account {
 
   // Relation Fields
   user_cpf String @unique
-  user     User   @relation(fields: [user_cpf], references: [cpf])
+  user     User   @relation(fields: [user_cpf], references: [cpf], onDelete: Cascade)
 
   recipient Transaction[] @relation("recipient")
   sender    Transaction[] @relation("sender")
@@ -41,9 +41,9 @@ model Transaction {
 
   // Relation Fields
   recipient_id String
-  recipient    Account  @relation(name: "recipient", fields: [recipient_id], references: [id])
+  recipient    Account  @relation(name: "recipient", fields: [recipient_id], references: [id], onDelete: Cascade)
   sender_id    String?
-  sender       Account? @relation(name: "sender", fields: [sender_id], references: [id])
+  sender       Account? @relation(name: "sender", fields: [sender_id], references: [id], onDelete: Cascade)
 }
 
 enum TransactionType {

@@ -43,7 +43,7 @@ class UsersRepository implements IUsersRepository {
         },
       });
     } catch (err) {
-      throw new AppError('User not found.');
+      throw new AppError('Error while deleting user.');
     }
 
     return 'User successfully deleted.';
