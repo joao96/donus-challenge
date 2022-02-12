@@ -8,9 +8,11 @@ class DeleteUserController {
     const { cpf } = request.params;
     const deleteUserUseCase = container.resolve(DeleteUserUseCase);
 
-    await deleteUserUseCase.execute(cpf);
+    const message = await deleteUserUseCase.execute(cpf);
 
-    return response.status(200).send();
+    return response.status(200).json({
+      message,
+    });
   }
 }
 

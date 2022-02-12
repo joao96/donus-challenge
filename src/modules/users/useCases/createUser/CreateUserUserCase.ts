@@ -13,18 +13,18 @@ class CreateUserUseCase {
   ) {}
 
   async execute({ cpf, full_name }: ICreateUserDTO): Promise<User> {
-    const userAlreadyExists = await this.usersRepository.findByCPF(cpf);
-
-    if (userAlreadyExists) {
-      throw new AppError('User already exists.');
-    }
-
     if (!full_name) {
       throw new AppError("Provide the user's full name.");
     }
 
     if (!cpf) {
       throw new AppError('Provide a valid CPF.');
+    }
+
+    const userAlreadyExists = await this.usersRepository.findByCPF(cpf);
+
+    if (userAlreadyExists) {
+      throw new AppError('User already exists.');
     }
 
     const user = await this.usersRepository.create({ cpf, full_name });

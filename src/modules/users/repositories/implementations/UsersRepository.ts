@@ -35,7 +35,7 @@ class UsersRepository implements IUsersRepository {
     return result;
   }
 
-  async delete(cpf: string): Promise<void> {
+  async delete(cpf: string): Promise<string> {
     try {
       await this.client.user.delete({
         where: {
@@ -45,6 +45,8 @@ class UsersRepository implements IUsersRepository {
     } catch (err) {
       throw new AppError('User not found.');
     }
+
+    return 'User successfully deleted.';
   }
 }
 

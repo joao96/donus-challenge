@@ -1,6 +1,5 @@
 import { PrismaClient, Account } from '@prisma/client';
 
-import { AppError } from '../../../../errors/AppError';
 import { prismaClient } from '../../../../services/prisma';
 import { ICreateAccountDTO } from '../../dtos/ICreateAccountDTO';
 import { IMakeTransactionDTO } from '../../dtos/IMakeTransactionDTO';
@@ -74,16 +73,14 @@ class AccountsRepository implements IAccountsRepository {
     return result;
   }
 
-  async delete(id: string): Promise<void> {
-    try {
-      await this.client.account.delete({
-        where: {
-          id,
-        },
-      });
-    } catch (err) {
-      throw new AppError('Account not found.');
-    }
+  async delete(id: string): Promise<string> {
+    await this.client.account.delete({
+      where: {
+        id,
+      },
+    });
+
+    return 'Account successfully deleted.';
   }
 }
 

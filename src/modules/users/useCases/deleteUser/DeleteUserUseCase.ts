@@ -10,14 +10,16 @@ class DeleteUserUseCase {
     private usersRepository: IUsersRepository
   ) {}
 
-  async execute(cpf: string): Promise<void> {
+  async execute(cpf: string): Promise<string> {
     const user = await this.usersRepository.findByCPF(cpf);
 
     if (!user) {
       throw new AppError('User not found.');
     }
 
-    await this.usersRepository.delete(cpf);
+    const response = await this.usersRepository.delete(cpf);
+
+    return response;
   }
 }
 

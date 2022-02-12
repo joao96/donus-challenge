@@ -10,8 +10,4 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=donus
     volumes:
-      - pgdata:/data/postgres
-
-volumes:
-  pgdata:
-    driver: local
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql

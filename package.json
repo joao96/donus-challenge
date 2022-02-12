@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --poll --respawn src/server.ts",
     "push:development": "dotenv -e .env.development -- prisma db push",
-    "test": "NODE_ENV=test jest --runInBand --forceExit --detectOpenHandles",
+    "test": "NODE_ENV=test dotenv -e .env.test jest -i",
     "push:test": "NODE_ENV=test dotenv -e .env.test -- prisma db push"
   },
   "dependencies": {

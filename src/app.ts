@@ -1,13 +1,16 @@
 import 'reflect-metadata';
 import cors from 'cors';
+import { config } from 'dotenv';
 import express, { NextFunction, Response, Request } from 'express';
 
 import './shared/container';
 
 import 'express-async-errors';
+
 import { AppError } from './errors/AppError';
 import { router } from './shared/infra/http/routes';
 
+config({ path: '.env' });
 const app = express();
 
 app.use(express.json());

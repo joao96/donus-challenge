@@ -8,9 +8,11 @@ class DeleteAccountController {
     const { id } = request.params;
     const deleteAccountUseCase = container.resolve(DeleteAccountUseCase);
 
-    await deleteAccountUseCase.execute(id);
+    const message = await deleteAccountUseCase.execute(id);
 
-    return response.status(200).send();
+    return response.status(200).json({
+      message,
+    });
   }
 }
 

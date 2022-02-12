@@ -9,7 +9,7 @@ interface IAccountsRepository {
   create(account: ICreateAccountDTO): Promise<Account>;
   deposit(transaction: IMakeTransactionDTO): Promise<Account>;
   withdrawal(transaction: IMakeTransactionDTO): Promise<Account>;
-  delete(user_cpf: string): Promise<void>;
+  delete(user_cpf: string): Promise<string>;
 }
 
 export { IAccountsRepository };
