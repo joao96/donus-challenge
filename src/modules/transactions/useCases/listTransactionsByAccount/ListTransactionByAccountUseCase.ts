@@ -1,4 +1,4 @@
-import { Transaction, TransactionType } from '@prisma/client';
+import { Transaction } from '@prisma/client';
 import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '../../../../errors/AppError';
@@ -27,7 +27,7 @@ class ListTransactionByAccountUseCase {
       );
       return transactions;
     } catch (err) {
-      throw new AppError('Internal error while retrieving transactions.', 500);
+      throw new AppError('Internal Error while retrieving transactions.', 500);
     }
   }
 }
