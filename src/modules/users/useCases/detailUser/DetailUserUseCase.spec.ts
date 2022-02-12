@@ -17,11 +17,6 @@ describe('Detail User', () => {
     usersRepository = new UsersRepository();
     createUserUseCase = new CreateUserUseCase(usersRepository);
     detailUserUseCase = new DetailUserUseCase(usersRepository);
-
-    await createUserUseCase.execute({
-      cpf: '33333',
-      full_name: 'Benjamin Gilbert',
-    });
   });
 
   afterAll(async () => {
@@ -30,6 +25,11 @@ describe('Detail User', () => {
   });
 
   it('should be able to retrieve user info', async () => {
+    await createUserUseCase.execute({
+      cpf: '33333',
+      full_name: 'Benjamin Gilbert',
+    });
+
     const response = await detailUserUseCase.execute('33333');
 
     expect(response).toHaveProperty('created_at');

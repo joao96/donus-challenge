@@ -17,11 +17,6 @@ describe('Delete User', () => {
     usersRepository = new UsersRepository();
     deleteUserUseCase = new DeleteUserUseCase(usersRepository);
     createUserUseCase = new CreateUserUseCase(usersRepository);
-
-    await createUserUseCase.execute({
-      cpf: '22222',
-      full_name: 'Jean Hayes',
-    });
   });
 
   afterAll(async () => {
@@ -30,7 +25,12 @@ describe('Delete User', () => {
   });
 
   it('should be able to delete a user', async () => {
-    const response = await deleteUserUseCase.execute('22222');
+    const user = await createUserUseCase.execute({
+      cpf: '22222',
+      full_name: 'Jean Hayes',
+    });
+
+    const response = await deleteUserUseCase.execute(user.cpf);
 
     expect(response).toEqual('User successfully deleted.');
   });
