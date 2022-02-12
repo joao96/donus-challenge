@@ -25,6 +25,8 @@ class CreateTransactionUseCase {
     const recipientAccount = await this.accountsRepository.findById(
       recipient_id
     );
+    const differentAccounts = recipient_id !== sender_id;
+
     let transactionType: TransactionType = type;
 
     if (amount <= 0) {
@@ -35,7 +37,7 @@ class CreateTransactionUseCase {
       throw new AppError('Recipient account not found.');
     }
 
-    if (sender_id && recipient_id !== sender_id) {
+    if (sender_id && differentAccounts) {
       const senderAccount = await this.accountsRepository.findById(sender_id);
 
       if (!senderAccount) {
@@ -58,11 +60,13 @@ class CreateTransactionUseCase {
       recipient_id,
       type: transactionType,
       description,
-      sender_id,
+      ...(differentAccounts && {
+        sender_id,
+      }),
     });
 
     if (transaction.id) {
-      if (sender_id && recipient_id !== sender_id) {
+      if (sender_id && differentAccounts) {
         await this.accountsRepository.withdrawal({ amount, id: sender_id });
       }
       await this.accountsRepository.deposit({ amount, id: recipient_id });

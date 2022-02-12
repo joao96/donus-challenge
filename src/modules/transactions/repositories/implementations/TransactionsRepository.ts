@@ -40,6 +40,23 @@ class TransactionsRepository implements ITransactionsRepository {
 
     return result;
   }
+
+  async listAllByAccount(account_id: string): Promise<Transaction[]> {
+    const transactions = await this.client.transaction.findMany({
+      where: {
+        OR: [
+          {
+            recipient_id: account_id,
+          },
+          {
+            sender_id: account_id,
+          },
+        ],
+      },
+    });
+
+    return transactions;
+  }
 }
 
 export { TransactionsRepository };
