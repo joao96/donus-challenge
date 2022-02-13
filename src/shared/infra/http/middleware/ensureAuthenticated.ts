@@ -9,14 +9,12 @@ export async function ensureAuthenticated(
 
   next: NextFunction
 ) {
-  const authHeader = request.headers.authorization;
-  if (!authHeader) {
+  const apiKey = request.header('x-api-key');
+  if (!apiKey) {
     throw new AppError('API Key missing!', 401);
   }
 
-  const [, apiKey] = authHeader.split(' ');
-
-  if (!apiKey || apiKey !== process.env.API_KEY) {
+  if (apiKey !== process.env.API_KEY) {
     throw new AppError('Invalid API Key!', 401);
   } else {
     next();
