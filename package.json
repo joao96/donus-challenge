@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --poll --respawn src/server.ts",
-    "push:development": "dotenv -e .env.development -- prisma db push",
+    "push:development": "dotenv -e .env -- prisma db push",
     "test": "NODE_ENV=test dotenv -e .env.test jest --runInBand --detectOpenHandles",
     "push:test": "NODE_ENV=test dotenv -e .env.test -- prisma db push"
   },
@@ -13,14 +13,12 @@
     "@prisma/client": "^3.8.1",
     "@sentry/node": "^6.16.1",
     "@sentry/tracing": "^6.16.1",
-    "axios": "^0.24.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "dotenv-cli": "^4.1.1",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
     "reflect-metadata": "^0.1.13",
-    "supertest": "^6.2.1",
     "swagger-ui-express": "^4.3.0",
     "tsyringe": "^4.6.0"
   },
