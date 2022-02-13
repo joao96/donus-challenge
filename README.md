@@ -29,7 +29,6 @@
 - [Jest](https://jestjs.io/)
 - [Docker](https://www.docker.com/)
 - [Sentry](https://sentry.io/welcome/)
-- [Github Actions](https://github.com/features/actions)
 
 - [VS Code][vc] with [EditorConfig][vceditconfig] and [ESLint][vceslint]
 
@@ -61,6 +60,10 @@ yarn
 **Step 3:** 
 
 Create a .env file in the root of your project and use the [.env.example](https://github.com/joao96/donus-challenge/blob/master/.env.example) file to assist you in filling out the necessary variables.
+
+**IMPORTANT** 
+
+Do not forget to provide an API_KEY value to the .env file.
 
 **Step 4 (DOCKER):**
 
@@ -96,10 +99,6 @@ Once the server is up, you should be able to use the API.
 Furthermore, [Sentry](https://sentry.io/welcome/) was added to this project in order to monitor the errors launched during the execution of the application. 
 In your .env file, add the DNS string to the variable SENTRY_DSN (See [.env.example](https://github.com/joao96/donus-challenge/blob/master/.env.example)).
 
-**Note**
-
-This repo has a CI build using [Github Actions](https://github.com/features/actions).
-
 ## :test_tube: Testing
 
 To execute the test suite developed for this project, check if there's a database called **_test_** in the postgres container. It should have been created when you executed the command  ```docker-compose up -d```. If not, you can always do so using SQL.
@@ -121,6 +120,10 @@ yarn test
 ## :sparkles: How To Use
 
 Once the server is up, check out the OpenAPI documentation at http://localhost:3333/api-docs to learn more about the routes and features.
+
+Important to note that in order to actually use application, you must provide a API_KEY to your .env file. 
+
+Use the same value to operate the OpenAPI at http://localhost:3333/api-docs.
 
 ## :page_facing_up: License
 
